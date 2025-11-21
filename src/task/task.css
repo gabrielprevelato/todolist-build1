@@ -1,0 +1,207 @@
+/* ======== DIALOG / MODAL ======== */
+.backdrop {
+  background: rgba(0, 0, 0, 0.5);
+  position: fixed;
+  inset: 0;
+  backdrop-filter: blur(4px);
+  animation: fadeIn 0.2s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+dialog {
+  width: 95%;
+  max-width: 500px;
+  background: #ffffff;
+  border: none;
+  border-radius: 20px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+  padding: 2rem;
+  margin: auto;
+
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  animation: slideUp 0.3s ease;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(100px);
+  }
+  to {
+    opacity: 1;
+
+  }
+}
+
+dialog::backdrop {
+  background: transparent;
+}
+
+/* ======== DIALOG CONTENT ======== */
+dialog h2 {
+  margin: 0 0 1.5rem 0;
+  color: #2c3e50;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+dialog p {
+  margin-bottom: 1.25rem;
+  color: #34495e;
+}
+
+dialog label {
+  display: block;
+  font-weight: 600;
+  font-size: 0.85rem;
+  color: #34495e;
+  margin-bottom: 0.5rem;
+  margin-top: 1rem;
+}
+
+dialog label:first-of-type {
+  margin-top: 0;
+}
+
+dialog input,
+dialog textarea {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 2px solid #e0e6ed;
+  border-radius: 12px;
+  background: #f8f9fa;
+  color: #2c3e50;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+  font-family: inherit;
+  margin-bottom: 0.25rem;
+}
+
+dialog input:hover,
+dialog textarea:hover {
+  border-color: #b8c5d6;
+  background: #ffffff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+ input:focus,
+ textarea:focus {
+  outline: none;
+  border-color: #3498db;
+  background: #ffffff;
+  box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+}
+
+/* ======== DIALOG ACTIONS ======== */
+.actions {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+}
+
+ button {
+  padding: 0.75rem 1.5rem;
+  border-radius: 12px;
+  border: none;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+ button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+ button:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+ button[type="submit"] {
+  background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+  color: #ffffff;
+}
+
+ button[type="submit"]:hover {
+  background: linear-gradient(135deg, #2980b9 0%, #1f618d 100%);
+}
+
+ button[type="button"] {
+  background: #ecf0f1;
+  color: #34495e;
+}
+
+ button[type="button"]:hover {
+  background: #d5dbdb;
+}
+
+/* ======== TASK CARDS / ARTICLES ======== */
+article {
+  padding: 1.5rem;
+  background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+  width: 95%;
+  max-width: 600px;
+  margin: 1.5rem auto;
+  border-radius: 16px;
+  border: 2px solid #e0e6ed;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+}
+
+article button {
+  background: linear-gradient(135deg, #ececec 0%, #b9b9b9 100%);
+  color: #4d4d4d;
+}
+
+article:hover {
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+  transform: translateY(-2px);
+}
+
+article h2 {
+  margin: 0 0 0.75rem 0;
+  color: #2c3e50;
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+article p {
+  color: #34495e;
+  margin: 0.5rem 0;
+  font-size: 0.95rem;
+}
+
+article time {
+  display: inline-block;
+  padding: 0.4rem 0.8rem;
+  background: #e8f4f8;
+  color: #2980b9;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-top: 0.75rem;
+}
+
+
+@media (min-width: 768px) {
+  dialog {
+    padding: 1.6rem;
+  }
+}

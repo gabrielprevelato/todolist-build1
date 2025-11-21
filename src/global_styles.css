@@ -1,0 +1,170 @@
+/* ======== RESET / BASE ======== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+}
+
+body {
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  color: #2c3e50;
+  line-height: 1.6;
+  padding: 1.5rem;
+  min-height: 100vh;
+}
+
+/* ======== HEADINGS ======== */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 700;
+  color: #2c3e50;
+  letter-spacing: -0.3px;
+  margin-bottom: 1rem;
+}
+
+h1 {
+  font-size: 2rem;
+  text-align: center;
+}
+
+h2 {
+  font-size: 1.5rem;
+}
+
+h3 {
+  font-size: 1.25rem;
+}
+
+/* ======== TEXT ELEMENTS ======== */
+p {
+  margin-bottom: 0.75rem;
+  color: #34495e;
+  font-size: 0.95rem;
+}
+
+label {
+  font-weight: 600;
+  color: #34495e;
+  font-size: 0.85rem;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+/* ======== CONTAINERS ======== */
+div {
+  border-radius: 16px;
+}
+
+article {
+  border-radius: 16px;
+}
+
+/* ======== INPUTS / TEXTAREAS ======== */
+input,
+textarea {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 2px solid #e0e6ed;
+  border-radius: 12px;
+  background: #ffffff;
+  color: #2c3e50;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+  font-family: inherit;
+}
+
+input:hover,
+textarea:hover {
+  border-color: #b8c5d6;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+input:focus,
+textarea:focus {
+  outline: none;
+  border-color: #3498db;
+  background: #ffffff;
+  box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: #95a5a6;
+}
+
+/* ======== BUTTONS ======== */
+button {
+  font: inherit;
+  cursor: pointer;
+  padding: 0.75rem 1.5rem;
+  border-radius: 12px;
+  border: none;
+  transition: all 0.3s ease;
+  font-weight: 600;
+  font-size: 0.95rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+button:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Primary buttons (Submit/Confirm) */
+button[type="submit"],
+button.primary {
+  background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+  color: #ffffff;
+}
+
+button[type="submit"]:hover,
+button.primary:hover {
+  background: linear-gradient(135deg, #2980b9 0%, #1f618d 100%);
+}
+
+/* Secondary buttons (Cancel) */
+button[type="button"],
+button.secondary {
+  background: #ecf0f1;
+  color: #34495e;
+}
+
+button[type="button"]:hover,
+button.secondary:hover {
+  background: #d5dbdb;
+}
+
+/* Danger buttons */
+button.danger {
+  background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+  color: #ffffff;
+}
+
+button.danger:hover {
+  background: linear-gradient(135deg, #c0392b 0%, #a93226 100%);
+}
+
+button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* ======== FORMS ======== */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+form p {
+  margin: 0;
+}

@@ -1,0 +1,11 @@
+<app-head></app-head>
+
+<app-hotbar (addTask)="addConfirm()"> </app-hotbar>
+
+@if (allowAdd) {
+  <app-task (cancelTask)="addClose()" ></app-task>
+}
+
+@for (item of getTaskList; track item){
+<app-taskList [taskList]="item" > </app-taskList>
+}
