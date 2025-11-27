@@ -1,0 +1,18 @@
+<div class="backdrop"></div>
+
+<dialog open>
+  <button type="button" class="dialog-close" (click)="filterCancel()" aria-label="Close">✕</button>
+  <h2 class="filter-title">Filter Tasks</h2>
+  <form class="filter-form">
+    <div class="filter-list">
+      @for (item of priorityList; track item) {
+        <button type="button" class="filter-pill" (click)="filterChar(item.id)" >
+          <span [style]="item.color" class="filter-label">{{item.name}}</span>
+        </button>
+      }
+    </div>
+    <button type="button" class="filter-reset" (click)="resetTask()">
+      <span class="filter-icon">⟲</span> Reset
+    </button>
+  </form>
+</dialog>

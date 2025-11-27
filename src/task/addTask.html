@@ -1,0 +1,41 @@
+<div class="backdrop"></div>
+<dialog open>
+  <!-- Close button moved to dialog: backdrop no longer closes the modal -->
+  <button type="button" class="dialog-close" (click)="taskClose()" aria-label="Close">✕</button>
+  <form (ngSubmit)="taskSubmit()">
+    <p>
+
+      @if (error === true){
+        <p style='color:red; font-weight: 500;'>All fields must be filled ( ! )</p>
+      }
+      <label for="title">Title</label>
+  <input type="text" id="title" name="title" [(ngModel)]="newTitle" maxlength="25" [class.at-limit]="(newTitle?.length || 0) >= 25" />
+  <span class="char-counter" [class.over]="(newTitle?.length || 0) >= 25">{{ (newTitle?.length || 0) }}/25</span>
+    </p>
+    <p>
+      <label for="summary">Summary</label>
+  <textarea id="summary" rows="5" name="summary" [(ngModel)]="newSummary" maxlength="100" [class.at-limit]="(newSummary?.length || 0) >= 100"></textarea>
+  <span class="char-counter" [class.over]="(newSummary?.length || 0) >= 100">{{ (newSummary?.length || 0) }}/100</span>
+    </p>
+
+    <label> Priority </label>
+      <select name="Priority" [(ngModel)]="newPriority">
+        <option value="" disabled selected>Select an option</option>
+      
+      @for (item of priorityList; track item) {
+      <option style={{item.color}} value={{item.name}} >{{item.name}}</option>
+      }
+    </select >
+
+    <p>
+      <label for="due-date">Due date</label>
+      <input type="date" id="due-date" name="due-date" [(ngModel)]="newDueDate"/>
+    </p>
+    <p>
+  <button type="button" (click)="taskClose()">Cancel</button>
+
+        <button type="submit">Submit</button>
+
+    </p>
+  </form>
+</dialog>
