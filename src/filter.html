@@ -1,0 +1,13 @@
+<div class="backdrop" (click)="filterClose()"></div>
+<dialog open>
+  <form>
+    @for (item of priorityList; track item){
+    <p>
+      <button (click)="filterChar(item.id)" style="{{item.color}}">
+        {{item.name}}
+      </button>
+    </p>
+    }
+    <button (click)="resetTask()">Reset</button>
+  </form>
+</dialog>

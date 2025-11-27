@@ -7,7 +7,7 @@
     <div class="filter-list">
       @for (item of priorityList; track item) {
         <button type="button" class="filter-pill" (click)="filterChar(item.id)" >
-          <span [style]="item.color" class="filter-label">{{item.name}}</span>
+          <span style="{{item.color}}" class="filter-label">{{item.name}}</span>
         </button>
       }
     </div>

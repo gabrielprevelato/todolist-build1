@@ -1,38 +1,21 @@
-import {Component, inject, EventEmitter, Output} from '@angular/core';
-import {FormsModule} from '@angular/forms';
-import {taskService} from './task.service';
-
+import { Component, inject, Input } from '@angular/core';
+import { taskService } from './task.service';
+import { taskModel, priorityModel } from './task.model';
 
 @Component({
-  selector: 'app-task',
+  selector: 'app-taskList',
   standalone: true,
-  imports:[FormsModule],
+  imports: [],
   templateUrl: 'task.html',
   styleUrl: 'task.css',
 })
+export class taskListComp {
+  tasks = inject(taskService);
 
-export class taskComp {
+  @Input({ required: true }) taskList!: taskModel;
+  @Input() priorityModel!: priorityModel;
 
-  @Output() cancelTask = new EventEmitter();
-  
-  private taskServ=inject(taskService);
-
-  newTitle:string= '';
-  newSummary:string= '';
-  newDueDate:string='';
-  newId:string='';
-
-  taskClose(){
-    this.cancelTask.emit();
-  }
-  
-  taskSubmit(){
-    this.taskServ.addTask({
-      id:this.newId,
-      title:this.newTitle,
-      summary:this.newSummary,
-      dueDate:this.newDueDate,
-    },);
-    this.cancelTask.emit();
+  dismissTask() {
+    this.tasks.removeTask(this.taskList.id);
   }
 }

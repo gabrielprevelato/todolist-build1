@@ -1,20 +1,9 @@
-<dialog open>
-  <form (ngSubmit)="taskSubmit()">
-    <p>
-      <label for="title">Title</label>
-      <input type="text" id="title" name="title" [(ngModel)]="newTitle"/>
-    </p>
-    <p>
-      <label for="summary">Summary</label>
-      <textarea id="summary" rows="5" name="summary" [(ngModel)]="newSummary"> </textarea>
-    </p>
-    <p>
-      <label for="due-date">Due date</label>
-      <input type="date" id="due-date" name="due-date" [(ngModel)]="newDueDate"/>
-    </p>
-    <p>
-  <button type="button" (click)="taskClose()">Cancel</button>
-        <button type="submit">Submit</button>
-    </p>
-  </form>
-</dialog>
+<article>
+  <h2>{{taskList.title}}</h2>
+  <time>{{taskList.dueDate}}</time>
+  <p>{{taskList.summary}}</p>
+  <p>{{taskList.priority}}</p>
+  <p>{{taskList.id}}</p>
+  <p class="actions"></p>
+  <button type="dismiss" (click)="dismissTask()">Dismiss</button>
+</article>

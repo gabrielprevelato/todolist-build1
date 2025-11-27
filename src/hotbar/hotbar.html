@@ -1,3 +1,7 @@
 <div class="hotbar">
   <button (click)="addFunc()">Add Task</button>
+  <button (click)="filterTasks()">Filter</button>
+@if (allowAllDismiss && arrTasks.length > 0) {
+  <button type="dismiss" (click)="dismissAllTasks()">Dismiss All</button>
+}
 </div>

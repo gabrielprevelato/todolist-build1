@@ -4,7 +4,6 @@
   max-width: 600px;
   margin: 1.5rem auto;
   display: flex;
-  justify-content: left;
   gap: 1rem;
   padding: 1.5rem;
   background: #ffffff;
@@ -12,6 +11,7 @@
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
   animation: fadeIn 0.3s ease;
 }
+
 
 @keyframes fadeIn {
   from {
@@ -21,6 +21,19 @@
     opacity: 1;
   }
 }
+
+/* Style for dismiss button */
+.hotbar button[type='dismiss'] {
+  background: linear-gradient(135deg, #ececec 0%, #b9b9b9 100%);
+  color: #4d4d4d;
+  /*margin-left: auto;*/
+}
+
+.hotbar button:hover[type='dismiss'] {
+  background: linear-gradient(135deg, #ececec 20%, #b9b9b9 100%);
+  color: #4d4d4d;
+}
+
 
 .hotbar button {
   padding: 0.75rem 1.5rem;

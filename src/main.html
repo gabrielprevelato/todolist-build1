@@ -1,11 +1,22 @@
 <app-head></app-head>
 
-<app-hotbar (addTask)="addConfirm()"> </app-hotbar>
+<app-hotbar (filter)="filterEvent()" (addTask)="addConfirm()"> </app-hotbar>
+
+@if (show) {
+<app-filter (cancel)='filterCancel()' (close)="filterClose()" (reset)="resetTask()"></app-filter>
+} 
+
 
 @if (allowAdd) {
-  <app-task (cancelTask)="addClose()" ></app-task>
+<app-task (cancelTask)="addClose()"></app-task>
+
 }
 
-@for (item of getTaskList; track item){
-<app-taskList [taskList]="item" > </app-taskList>
+
+ @for (item of getTaskList; track item){
+<app-taskList [taskList]="item"> </app-taskList>
+}
+
+@if (getTaskList.length === 0) {
+	<p style="text-align: center">Please add a new task!</p>
 }

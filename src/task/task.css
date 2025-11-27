@@ -1,10 +1,11 @@
 /* ======== DIALOG / MODAL ======== */
 .backdrop {
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(255, 255, 255, 0.286);
   position: fixed;
   inset: 0;
   backdrop-filter: blur(4px);
   animation: fadeIn 0.2s ease;
+  border-radius: 0;
 }
 
 @keyframes fadeIn {
@@ -33,6 +34,36 @@ dialog {
   animation: slideUp 0.3s ease;
 }
 
+/* Make dialog forms more compact than global forms (reduces gap between fields) */
+dialog form {
+  display: flex; /* override global `form { display:flex }` */
+  gap: 20px; /* ensure no extra flex gap */
+}
+
+/* Close button in dialog (top-right) */
+.dialog-close {
+  position: absolute;
+  top: 0.6rem;
+  right: 0.6rem;
+  background: transparent;
+  border: none;
+  color: #34495e;
+  font-size: 1.25rem;
+  line-height: 1;
+  padding: 0.35rem 0.5rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s, transform 0.08s;
+}
+.dialog-close:hover {
+  background: rgba(0,0,0,0.04);
+  color: #2c3e50;
+  transform: translateY(-1px);
+}
+.dialog-close:active {
+  transform: translateY(0);
+}
+
 @keyframes slideUp {
   from {
     opacity: 0;
@@ -40,7 +71,6 @@ dialog {
   }
   to {
     opacity: 1;
-
   }
 }
 
@@ -56,18 +86,25 @@ dialog h2 {
   font-weight: 700;
 }
 
+/* paragraphs inside dialog: slightly reduced spacing for compact form layout */
 dialog p {
-  margin-bottom: 1.25rem;
+  margin-bottom: 0.35rem;
   color: #34495e;
 }
 
+/* form row used inside addTask dialog */
+dialog .form-row {
+  margin-bottom: 0.35rem;
+}
+
+/* labels inside dialog: reduce top/bottom margins to avoid large gaps between fields */
 dialog label {
   display: block;
   font-weight: 600;
   font-size: 0.85rem;
   color: #34495e;
-  margin-bottom: 0.5rem;
-  margin-top: 1rem;
+  margin-bottom: 0rem;
+  margin-top: 0rem;
 }
 
 dialog label:first-of-type {
@@ -85,9 +122,65 @@ dialog textarea {
   font-size: 0.95rem;
   transition: all 0.3s ease;
   font-family: inherit;
-  margin-bottom: 0.25rem;
+  margin-bottom: 0;
 }
 
+dialog textarea {
+  resize: none;
+}
+
+/* Character counter styles for addTask dialog */
+.char-counter {
+  color: rgb(126, 126, 126);
+  font-size: 0.9em;
+  display: block;
+  text-align: right;
+}
+.char-counter.over {
+  color: #ff8c80; /* red when limit reached */
+  font-weight: 600;
+}
+
+
+
+/* ======== SELECT STYLING ======== */
+dialog select {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 2px solid #e0e6ed;
+  border-radius: 12px;
+  background: #f8f9fa;
+  color: #2c3e50;
+  font-size: 0.95rem;
+  font-family: inherit;
+  margin-bottom: 0.5rem;
+  appearance: none;
+  transition: border-color 0.3s, box-shadow 0.3s;
+  background-image: url('data:image/svg+xml;utf8,<svg fill="%233498db" height="16" viewBox="0 0 24 24" width="16" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>');
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  background-size: 1.2em;
+}
+/* Hint text for select */
+.select-hint {
+  display: block;
+  font-size: 0.85rem;
+  color: #2980b9;
+  margin-bottom: 1rem;
+  text-align: right;
+  pointer-events: none;
+}
+
+dialog select:focus {
+  outline: none;
+  border-color: #3498db;
+  box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+}
+
+dialog select:hover {
+  border-color: #b8c5d6;
+  background: #ffffff;
+}
 dialog input:hover,
 dialog textarea:hover {
   border-color: #b8c5d6;
@@ -95,8 +188,8 @@ dialog textarea:hover {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
 
- input:focus,
- textarea:focus {
+input:focus,
+textarea:focus {
   outline: none;
   border-color: #3498db;
   background: #ffffff;
@@ -111,7 +204,80 @@ dialog textarea:hover {
   gap: 1rem;
 }
 
- button {
+/* ======== FILTER TAB CUSTOM STYLES ======== */
+.filter-title {
+  text-align: center;
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin-bottom: 1.2rem;
+  color: #2980b9;
+}
+
+.filter-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.filter-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  justify-content: center;
+  margin-bottom: 0.5rem;
+}
+
+.filter-pill {
+  border: none;
+  padding: 0.6rem 1.3rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #fff;
+  box-shadow: 0 2px 8px rgba(52, 152, 219, 0.08);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: transform 0.15s, box-shadow 0.15s, background 0.2s;
+}
+.filter-pill:hover {
+  transform: translateY(-2px) scale(1.04);
+  box-shadow: 0 4px 16px rgba(52, 152, 219, 0.18);
+  filter: brightness(0.95);
+}
+
+.filter-icon {
+  font-size: 1.1em;
+  margin-right: 0.2em;
+}
+
+.filter-label {
+  font-size: 1em;
+}
+
+.filter-reset {
+  background: #f8f9fa;
+  color: #2980b9;
+  border: 2px solid #e0e6ed;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 0.98rem;
+  padding: 0.7rem 1.5rem;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  box-shadow: 0 2px 8px rgba(52, 152, 219, 0.08);
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s, border 0.15s;
+}
+.filter-reset:hover {
+  background: #e8f4f8;
+  color: #1f618d;
+  border-color: #b8c5d6;
+}
+
+button {
   padding: 0.75rem 1.5rem;
   border-radius: 12px;
   border: none;
@@ -119,36 +285,37 @@ dialog textarea:hover {
   font-size: 0.95rem;
   cursor: pointer;
   transition: all 0.3s ease;
+  margin-left: 0.5rem;
   display: inline-flex;
   align-items: center;
   justify-content: center;
 }
 
- button:hover {
+button:hover {
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
- button:active {
+button:active {
   transform: translateY(0);
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
 }
 
- button[type="submit"] {
+button[type='submit'] {
   background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
   color: #ffffff;
 }
 
- button[type="submit"]:hover {
+button[type='submit']:hover {
   background: linear-gradient(135deg, #2980b9 0%, #1f618d 100%);
 }
 
- button[type="button"] {
+button[type='button'] {
   background: #ecf0f1;
   color: #34495e;
 }
 
- button[type="button"]:hover {
+button[type='button']:hover {
   background: #d5dbdb;
 }
 
@@ -165,8 +332,13 @@ article {
   transition: all 0.3s ease;
 }
 
-article button {
+button[type='dismiss'] {
   background: linear-gradient(135deg, #ececec 0%, #b9b9b9 100%);
+  color: #4d4d4d;
+}
+
+button:hover[type='dismiss'] {
+  background: linear-gradient(135deg, #ececec 20%, #b9b9b9 100%);
   color: #4d4d4d;
 }
 
@@ -188,6 +360,14 @@ article p {
   font-size: 0.95rem;
 }
 
+/* Ensure long text wraps and doesn't overflow the article/card */
+article p {
+  overflow-wrap: anywhere;
+  overflow-wrap: break-word;
+  word-break: break-word;
+  hyphens: auto;
+}
+
 article time {
   display: inline-block;
   padding: 0.4rem 0.8rem;
@@ -198,7 +378,6 @@ article time {
   font-weight: 600;
   margin-top: 0.75rem;
 }
-
 
 @media (min-width: 768px) {
   dialog {

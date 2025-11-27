@@ -1,4 +1,5 @@
-import {Component, Output, EventEmitter} from '@angular/core';
+import {Component, Output, EventEmitter, inject} from '@angular/core';
+import { taskService } from '../task/task.service';
 
 
 @Component({
@@ -12,11 +13,27 @@ import {Component, Output, EventEmitter} from '@angular/core';
 export class hotbarComp {
 
 @Output() addTask = new EventEmitter();
- private test:boolean=false;
+@Output() filter = new EventEmitter();
+
+ private allowNewTask:boolean=false;
+
+ service = inject(taskService);
+
+ arrTasks=this.service.tasks;
   
   addFunc(){
     this.addTask.emit();
-    this.test=true;
+    this.allowNewTask=true;
   }
   
+  filterTasks(){
+    this.filter.emit();
+  }
+
+  allowAllDismiss:boolean=true;
+
+  dismissAllTasks(){
+    this.service.removeAllTasks();
+    this.allowAllDismiss=false;
+}
 }
